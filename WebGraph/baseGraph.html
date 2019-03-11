@@ -1,0 +1,351 @@
+<!DOCTYPE>
+
+<html>
+
+<head>
+	      <!--Import Google Icon Font-->
+      <link href="css/icon.css" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<script src="jquery.min.js"></script>
+	<script src="cytoscape.min.js"></script>
+	<script src="springy.js"></script>
+	<script src="cytoscape-springy.js"></script>
+	<script src="cytoscape-view-utilities.js"></script>
+	<script src="cytoscape-all-paths.js"></script>
+	<script src="cytoscape-cose-bilkent.js"></script>
+
+
+	<style>
+		body {
+			font-family: helvetica,sans-serif;
+			font-size: 12px;
+		}
+
+		#headPage{
+			height: 100px;
+			width: 100%;
+			position: absolute;
+			margin-top: 0px;
+			top: 0;
+			z-index: 999;
+		}
+
+		#cy {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 900;
+		}
+
+		.btn{
+			z-index: 999;
+			margin-top: 10px;
+		}
+		.input-field{
+			z-index: 999;
+		}
+
+		.tooltip{
+			z-index: 9999;
+		}
+
+	</style>
+
+	<script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var cy = cytoscape({
+                container: document.getElementById('cy'),
+
+                layout: {
+                    name: 'cose',
+                    padding: 30, // fit padding
+                    // name: 'cose-bilkent',
+                    // animate: false,
+                    // randomize: false,
+                    //   numIter: 10,
+                    //     tile: true,
+                    //   nodeRepulsion: 10,
+
+                },
+
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'content': 'data(name)',
+                            'border-color': '#ff0000',
+                            'min-zoomed-font-size': '14'
+                        }
+                    },
+
+                    {
+                        selector: 'edge',
+                        style: {
+                            'curve-style': 'haystack',
+                            'min-zoomed-font-size': '14'
+                        }
+                    },
+
+                    {
+                        selector: ':selected',
+                        style: {
+
+                        }
+                    }
+                ],
+                zoom: 1,
+                pan: { x: 0, y: 0 },
+                pixelRatio: 1,
+                hideEdgesOnViewport: true,
+                textureOnViewport : true,
+                elements: {
+                    nodes: [],
+                    edges: []
+                }
+            });
+
+
+            var doubleClickDelayMs = 350; var previousTapStamp;
+            cy.on('tap', function(e) {
+                var currentTapStamp = e.timeStamp;
+                var msFromLastTap = currentTapStamp - previousTapStamp;
+                if (msFromLastTap < doubleClickDelayMs) {
+                    e.target.trigger('doubleTap', e);
+                }
+                previousTapStamp = currentTapStamp;
+            });
+			// double click - goto wikidata
+            cy.on('doubleTap', function(event) {
+                if (event.target._private.data.id.toString().startsWith("Q")){
+                    location.assign('https://www.wikidata.org/wiki/' + event.target._private.data.id.toString() );
+                }
+            });
+
+            var api = cy.viewUtilities({
+                neighbor: function(node){
+                    return node.closedNeighborhood();
+                },
+                neighborSelectTime: 1000
+            });
+
+            $('#zoomToSelected').click( function(){
+                api.disableMarqueeZoom();
+                var selectedEles = cy.$(":selected");
+                api.zoomToSelected(selectedEles);
+            });
+
+            var toggleHighlight = false;
+            $("#highlightNeighbors").click(function () {
+                if(!toggleHighlight) {
+                    api.disableMarqueeZoom();
+                    if (cy.$(":selected").length > 0)
+                        api.highlightNeighbors(cy.$(":selected"));
+                    toggleHighlight = true;
+                }else {
+                    api.disableMarqueeZoom();
+                    api.removeHighlights();
+                    toggleHighlight = false;
+                }
+            });
+
+            // Increase border width to show nodes with hidden neighbors
+            function thickenBorder(eles){
+                eles.forEach(function( ele ){
+                    var defaultBorderWidth = Number(ele.css("border-width").substring(0,ele.css("border-width").length-2));
+                    ele.css("border-width", defaultBorderWidth + 2);
+                });
+                return eles;
+            }
+            // Decrease border width when hidden neighbors of the nodes become visible
+            function thinBorder(eles){
+                eles.forEach(function( ele ){
+                    var defaultBorderWidth = Number(ele.css("border-width").substring(0,ele.css("border-width").length-2));
+                    ele.css("border-width", defaultBorderWidth - 2);
+                });
+                return eles;
+            }
+
+			$("#shortestPath").click(function () {
+				var dfs = cy.elements().aStar({
+				  root: cy.$(":selected")[0],
+				  goal: cy.$(":selected")[1],
+				  directed: false
+				});
+				dfs.path.select()
+				console.log(dfs.distance)
+			});
+
+
+            $("#hideSelected").click(function () {
+                api.disableMarqueeZoom();
+                var nodesWithHiddenNeighbor = cy.edges(":hidden").connectedNodes(':visible');
+                thinBorder(nodesWithHiddenNeighbor);
+                api.hide(cy.$(":selected"));
+                nodesWithHiddenNeighbor = cy.edges(":hidden").connectedNodes(':visible');
+                thickenBorder(nodesWithHiddenNeighbor);
+            });
+
+            $("#showAll").click(function () {
+                api.disableMarqueeZoom();
+                var nodesWithHiddenNeighbor = cy.edges(":hidden").connectedNodes(':visible');
+                thinBorder(nodesWithHiddenNeighbor);
+                api.show(cy.elements());
+            });
+            $("#selectNeighbors").click(function () {
+                api.disableMarqueeZoom();
+                if (cy.$(":selected").length > 0)
+                    ((cy.$(":selected")).add((cy.$(":selected")).descendants()).closedNeighborhood()).select();
+            });
+
+            $("#showAllPaths").click(function () {
+                if (cy.$(":selected").length > 0) {
+                    // Paths // demo your collection ext
+                    let allPaths = (cy.$(":selected")).cytoscapeAllPaths(/* args... */);
+                    console.log(allPaths);
+                    // // Usage example: display each path at regular intervals
+                    // let maxTimes = allPaths.length;
+                    // let currentTimes = 0;
+                    // let selectedEles;
+                    // let interval = setInterval(() => {
+                    //     if (currentTimes === maxTimes) {
+                    //         currentTimes = 0;
+                    //     } else {
+                    //         if (selectedEles) selectedEles.unselect();
+                    //         selectedEles = allPaths[currentTimes];
+                    //         selectedEles.select();
+                    //         currentTimes++;
+                    //     }
+                    // }, 1000);
+
+                }
+            });
+
+            // init zoom level
+            cy.zoom({
+                level: (cy.zoom()*0.5),
+                position: { x: 0, y: 0 }
+            });
+			var toggleAnomaly = false;
+			var anomaliesEdges = [];
+			$("#anomaly").click(function () {
+                if(toggleAnomaly){
+                    var color = '#999';
+                    toggleAnomaly = false;
+                }
+                else if(!toggleAnomaly){
+                    color = 'red';
+                    toggleAnomaly = true;
+				}
+            cy.edges(function(element){
+                if(element.isEdge()){
+                    let source = element._private.data.source.toString();
+                    let target = element._private.data.target.toString();
+					for (let i = 0; i < anomaliesEdges.length; i++) {
+					    if((anomaliesEdges[i][0] === source) && (anomaliesEdges[i][1] === target)) {
+					        element.style({ 'line-color': color });
+                            console.log(element);
+                        }
+					}
+				}
+			});
+
+			});
+
+            function search(){
+                    let searchValue = $('#autocomplete-input').val();
+                    if(searchValue !== ""){
+                        cy.nodes('[^stam]').unselect();
+                        cy.nodes('[name = "' + searchValue.toString() + '"]').select();
+                        api.disableMarqueeZoom();
+                        var selectedEles = cy.$(":selected");
+                        api.zoomToSelected(selectedEles);
+
+                        $('#autocomplete-input').val("");
+                    }
+                    return false;
+                }
+
+
+                var autoCompleteOptions = {data: {},
+                limit: 5,
+					onAutocomplete: search,
+
+				};
+
+            $(document).ready(function(){
+				$('input.autocomplete').autocomplete(autoCompleteOptions);
+		  	});
+
+
+
+
+            cy.nodes(function(element){
+                if( element.isNode() && element.degree()<1){
+                    cy.remove(element)
+                }
+
+
+				// zoom-in to searched value
+                $("#searchButton").click(function () {
+                    let searchValue = $('#autocomplete-input').val();
+                    if(searchValue !== ""){
+                        cy.nodes('[^stam]').unselect();
+                        cy.nodes('[name = "' + searchValue.toString() + '"]').select();
+                        api.disableMarqueeZoom();
+                        var selectedEles = cy.$(":selected");
+                        api.zoomToSelected(selectedEles);
+                        $('#autocomplete-input').val("");
+                    }
+                });
+
+                $('#autocomplete-input').keypress(function (e) {
+					 var key = e.which;
+					 if(key === 13)  // the enter key code
+					  {
+						search();
+						return false;
+					  }
+					});
+
+            });
+        });
+	</script>
+</head>
+
+<body>
+
+<div id="headPage" class="row card-panel teal lighten-5">
+	    <div class="col S3">
+      <div class="row">
+        <div class="input-field col s10">
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">SEARCH</label>
+        </div>
+		  <!--<a id="searchButton" class="waves-effect waves-light btn col S1">GO</a>-->
+	  </div>
+		</div>
+	<a id="zoomToSelected" class="waves-effect waves-light btn tooltipped" data-tooltip="Zoom to selected nodes">ZOOM-TO SELECTED</a>
+	<a id="highlightNeighbors" class="waves-effect waves-light btn">HIGHLIGHT NEIGHBORS</a>
+	<a id="selectNeighbors" class="waves-effect waves-light btn">SELECT NEIGHBORS</a>
+	<a id="shortestPath" class="waves-effect waves-light btn">SHORTEST PATH</a>
+	<a id="anomaly" class="waves-effect waves-light btn">ANOMALY DETECTION</a>
+
+
+
+
+</div>
+
+
+
+
+<div id="cy"></div>
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE>
+
+<html>
+
+<head>
+	      <!--Import Google Icon Font-->
+      <link href="css/icon.css" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<script src="jquery.min.js"></script>
+	<script src="cytoscape.min.js"></script>
+	<script src="springy.js"></script>
+	<script src="cytoscape-springy.js"></script>
+	<script src="cytoscape-view-utilities.js"></script>
+	<script src="cytoscape-all-paths.js"></script>
+	<script src="cytoscape-cose-bilkent.js"></script>
+
+
+	<style>
+		body {
+			font-family: helvetica,sans-serif;
+			font-size: 12px;
+		}
+
+		#headPage{
+			height: 100px;
+			width: 100%;
+			position: absolute;
+			margin-top: 0px;
+			top: 0;
+			z-index: 999;
+		}
+
+		#cy {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 900;
+		}
+
+		.btn{
+			z-index: 999;
+			margin-top: 10px;
+		}
+		.input-field{
+			z-index: 999;
+		}
+
+		.tooltip{
+			z-index: 9999;
+		}
+
+	</style>
+
+	<script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var cy = cytoscape({
+                container: document.getElementById('cy'),
+
+                layout: {
+                    name: 'cose',
+                    padding: 30, // fit padding
+                    // name: 'cose-bilkent',
+                    // animate: false,
+                    // randomize: false,
+                    //   numIter: 10,
+                    //     tile: true,
+                    //   nodeRepulsion: 10,
+
+                },
+
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'content': 'data(name)',
+                            'border-color': '#ff0000',
+                            'min-zoomed-font-size': '14'
+                        }
+                    },
+
+                    {
+                        selector: 'edge',
+                        style: {
+                            'curve-style': 'haystack',
+                            'min-zoomed-font-size': '14'
+                        }
+                    },
+
+                    {
+                        selector: ':selected',
+                        style: {
+
+                        }
+                    }
+                ],
+                zoom: 1,
+                pan: { x: 0, y: 0 },
+                pixelRatio: 1,
+                hideEdgesOnViewport: true,
+                textureOnViewport : true,
+                elements: {
+                    nodes: [{data:{id:'Q3294019',name:'Mark Burnett'}},{data:{id:'Q755975',name:'Survivor'}},{data:{id:'Q5355185',name:'Burnett'}},{data:{id:'Q253567',name:'apprentice'}},{data:{id:'Q13974',name:'NBC'}},{data:{id:'Q129',name:'Thursday'}},{data:{id:'Q22686',name:'Donald Trump'}},{data:{id:'Q735',name:'art'}},{data:{id:'Q13371',name:'Harvard University'}},{data:{id:'Q30',name:'United States of America'}},{data:{id:'Q7748',name:'law'}},{data:{id:'Q16869716',name:'Dunlap'}},{data:{id:'Q5503',name:'rapid transit'}},{data:{id:'Q846570',name:'Americans'}},{data:{id:'Q16533',name:'judge'}},{data:{id:'Q18419',name:'Brooklyn'}},{data:{id:'Q9684',name:'The New York Times'}},{data:{id:'Q1553390',name:'United States Department of Justice'}},{data:{id:'Q1158326',name:'Kaiser'}},{data:{id:'Q50008',name:'The Times'}},{data:{id:'Q679',name:'west'}},{data:{id:'Q1348074',name:'Koch'}},{data:{id:'Q312889',name:'Peter Minuit'}},{data:{id:'Q15063317',name:'Manhattan Island'}},{data:{id:'Q60',name:'New York City'}},{data:{id:'Q128',name:'Wednesday'}},{data:{id:'Q6294',name:'Hillary Clinton'}},{data:{id:'Q29468',name:'Republican Party'}},{data:{id:'Q66096',name:'United States Senate'}},{data:{id:'Q437970',name:'Ryan Adams'}},{data:{id:'Q50000',name:'victory'}},{data:{id:'Q40231',name:'election'}},{data:{id:'Q1032197',name:'Exit'}},{data:{id:'Q1137457',name:'Muslims'}},{data:{id:'Q1193236',name:'news media'}},{data:{id:'Q1520122',name:'Getty Images'}},{data:{id:'Q1124',name:'Bill Clinton'}},{data:{id:'Q50614664',name:'Peninsula Hotel'}},{data:{id:'Q127',name:'Tuesday'}},{data:{id:'Q29552',name:'Democratic Party'}},{data:{id:'Q1166',name:'Michigan'}},{data:{id:'Q159',name:'Russia'}},{data:{id:'Q130',name:'Friday'}},{data:{id:'Q918',name:'Twitter'}},{data:{id:'Q5003490',name:'BuzzFeed'}},{data:{id:'Q7747',name:'Vladimir Putin'}},{data:{id:'Q15753046',name:'Crisis'}},{data:{id:'Q355',name:'Facebook'}},{data:{id:'Q11299',name:'Manhattan'}},{data:{id:'Q1326365',name:'elect'}},{data:{id:'Q1414593',name:'Patient Protection and Affordable Care Act'}},{data:{id:'Q18057751',name:'David'}},{data:{id:'Q6193301',name:'Jim Acosta'}},{data:{id:'Q17084460',name:'convolutional neural network'}},{data:{id:'Q16883676',name:'Spicer'}},{data:{id:'Q27829251',name:'Sean Spicer'}},{data:{id:'Q2145369',name:'Republican National Committee'}},{data:{id:'Q1357640',name:'Reince Priebus'}},{data:{id:'Q2462124',name:'The Trump Organization'}},{data:{id:'Q239411',name:'Ivanka Trump'}},{data:{id:'Q16829670',name:'Dillon'}},{data:{id:'Q612',name:'Dubai'}},{data:{id:'Q186545',name:'Midwestern United States'}},{data:{id:'Q14864384',name:'transporter activity'}},{data:{id:'Q1415',name:'Indiana'}},{data:{id:'Q178790',name:'trade union'}},{data:{id:'Q338067',name:'Oval Office'}},{data:{id:'Q38926',name:'news'}},{data:{id:'Q35525',name:'White House'}},{data:{id:'Q233240',name:'Stormy Daniels'}},{data:{id:'Q478798',name:'image'}},{data:{id:'Q588338',name:'Parkland'}},{data:{id:'Q331401',name:'Rex Tillerson'}},{data:{id:'Q80687',name:'secretary'}},{data:{id:'Q6245783',name:'John M. Dowd'}},{data:{id:'Q1158586',name:'Cohen'}},{data:{id:'Q142',name:'France'}},{data:{id:'Q858',name:'Syria'}},{data:{id:'Q794',name:'Iran'}},{data:{id:'Q5195456',name:'Mills'}},{data:{id:'Q801',name:'Israel'}},{data:{id:'Q1218',name:'Jerusalem'}},{data:{id:'Q548057',name:'1983 United States embassy bombing'}},{data:{id:'Q327245',name:'team'}},{data:{id:'Q204',name:'zero'}},{data:{id:'Q6408963',name:'Kim Jong'}},{data:{id:'Q334',name:'Singapore'}},{data:{id:'Q659',name:'north'}},{data:{id:'Q1185863',name:'Democratic National Committee'}},{data:{id:'Q649',name:'Moscow'}},{data:{id:'Q25685236',name:'Kavanaugh'}},{data:{id:'Q190752',name:'supreme court'}},{data:{id:'Q59561180',name:'Justice Anthony Kennedy: His Jurisprudence and the Future of the Court'}},{data:{id:'Q10390',name:'John McCain'}},{data:{id:'Q461063',name:'Meghan McCain'}},{data:{id:'Q16',name:'Canada'}},{data:{id:'Q181574',name:'North American Free Trade Agreement'}},{data:{id:'Q1192241',name:'Hurricane Florence'}},{data:{id:'Q4268',name:'East Coast of the United States'}},{data:{id:'Q166032',name:'The Washington Post'}},{data:{id:'Q851',name:'Saudi Arabia'}},{data:{id:'Q34508',name:'video'}},{data:{id:'Q56244961',name:'Khashoggi'}},{data:{id:'Q3358412',name:'Hurricane Michael'}},{data:{id:'Q1430068',name:'Florida Panhandle'}},{data:{id:'Q812',name:'Florida'}},{data:{id:'Q99',name:'California'}},{data:{id:'Q10225',name:'Indian National Congress'}},{data:{id:'Q3947',name:'house'}},{data:{id:'Q12344159',name:'William'}},{data:{id:'Q4925477',name:'John'}},{data:{id:'Q616856',name:'Maiko'}},{data:{id:'Q4800911',name:'articled clerk'}},{data:{id:'Q7347849',name:'Robert Mosher'}},{data:{id:'Q2170872',name:'Roy Orchard Woodruff'}},{data:{id:'Q267628',name:'column'}},{data:{id:'Q1061047',name:'blood libel'}},{data:{id:'Q309481',name:'obituary'}},{data:{id:'Q1358344',name:'newscast'}},{data:{id:'Q1510260',name:'Scoop'}},{data:{id:'Q2495037',name:'newspaper article'}},{data:{id:'Q374803',name:'Benny Morris'}},{data:{id:'Q1399562',name:'Emil Grunzweig'}},{data:{id:'Q6804409',name:'Jichak Pressburger'}},{data:{id:'Q6894819',name:'Moisis Michail Bourlas'}},{data:{id:'Q29033505',name:'John Clarence Lincoln'}},{data:{id:'Q16732868',name:'Nathalie Morin'}},{data:{id:'Q42719549',name:'Sean Bott'}},{data:{id:'Q1317',name:'Osama bin Laden'}},{data:{id:'Q62626',name:'Albrecht Brandi'}},{data:{id:'Q86483',name:'Black Friday'}},{data:{id:'Q169940',name:'deforestation'}},{data:{id:'Q373094',name:'James Wilson'}},{data:{id:'Q366838',name:'Victor Ashe'}},{data:{id:'Q367784',name:'Sumner Sewall'}},{data:{id:'Q368192',name:'John Anthony Volpe'}},{data:{id:'Q368339',name:'Phil Batt'}},{data:{id:'Q368717',name:'Hubert Work'}},{data:{id:'Q369068',name:'Edward Rell Madigan'}},{data:{id:'Q370284',name:'Nelson Dingley'}},{data:{id:'Q370668',name:'Donald Grant Nutter'}},{data:{id:'Q229671',name:'Chelsea Clinton'}},{data:{id:'Q5932520',name:'Hugh Rodham'}},{data:{id:'Q7823289',name:'Tony Rodham'}},{data:{id:'Q5298463',name:'Dorothy Howell Rodham'}},{data:{id:'Q16210828',name:'The Hillary Doctrine'}},{data:{id:'Q299842',name:'Antonia Kidman'}},{data:{id:'Q312663',name:'Eduardo Saverin'}},{data:{id:'Q455666',name:'Ho Ching'}},{data:{id:'Q5209775',name:'Daisy Turner'}},{data:{id:'Q4757349',name:'Andrew Huang'}},{data:{id:'Q5362281',name:'Elizabeth Alexander'}},{data:{id:'Q1756638',name:'Richard Chandler'}},{data:{id:'Q7238183',name:'Prakash Kumar Pallathadka'}},{data:{id:'Q7297669',name:'Ray Jefferson'}},{data:{id:'Q7344541',name:'Robert Friedland'}},{data:{id:'Q8743',name:'Thomas Alva Edison'}},{data:{id:'Q21929727',name:'Antonio Zucca'}},{data:{id:'Q21932014',name:'Carlo Curti'}},{data:{id:'Q22087923',name:'Avanidhar Subrahmanyam'}},{data:{id:'Q23705272',name:'Ana Tiscornia'}},{data:{id:'Q20979263',name:'Joseph Fuisz'}},{data:{id:'Q26215041',name:'Darko Tresnjak'}},{data:{id:'Q15846402',name:'Brendon Miller'}},{data:{id:'Q4968550',name:'Shelbee Myne'}},{data:{id:'Q5999461',name:'Pat Myne'}},{data:{id:'Q35742',name:'Alektra Blue'}},{data:{id:'Q1694701',name:'Johann II'}},{data:{id:'Q1782417',name:'Konrad von Ergersheim'}},{data:{id:'Q3752663',name:'Fred Trump'}},{data:{id:'Q1794269',name:'Kurt Wilhelm'}},{data:{id:'Q2120884',name:'Yaakov Litzman'}},{data:{id:'Q2069742',name:'Admon'}},{data:{id:'Q2082327',name:'Eliezer Moses'}},{data:{id:'Q5360310',name:'Eli Schwartz'}},{data:{id:'Q6836447',name:'Michel Kichka'}},{data:{id:'Q7279232',name:'Rachel Factor'}},{data:{id:'Q7832825',name:'trailing zero'}},{data:{id:'Q1481389',name:'leading zero'}},{data:{id:'Q3039253',name:'Dream Team'}},{data:{id:'Q3233297',name:'The Immortals'}},{data:{id:'Q3981826',name:'Team Alstare'}},{data:{id:'Q20011464',name:'Abbe Smith'}},{data:{id:'Q61',name:'Washington, D.C.'}},{data:{id:'Q21866302',name:'Frank Tomlinson'}},{data:{id:'Q19876550',name:'Vida Johnson'}},{data:{id:'Q20011582',name:'Tom Rogan'}},{data:{id:'Q21064129',name:'Tisha Lewis'}},{data:{id:'Q21088426',name:'Pete Daniel'}},{data:{id:'Q3264332',name:'Lovette'}},{data:{id:'Q139376',name:'Zach Randolph'}},{data:{id:'Q592426',name:'Del Harris'}},{data:{id:'Q6779390',name:'Mary Eileen Ahern'}},{data:{id:'Q317638',name:'Jimmy Hoffa'}},{data:{id:'Q7487426',name:'Shamar Bailey'}},{data:{id:'Q2647934',name:'Howard Goldblatt'}},{data:{id:'Q1568729',name:'Hagood Hardy'}},{data:{id:'Q58370944',name:'Sharon Mobley Stow'}},{data:{id:'Q3731533',name:'Eric Trump'}},{data:{id:'Q13628723',name:'Jared Kushner'}},{data:{id:'Q432473',name:'Melania Trump'}},{data:{id:'Q2597050',name:'Marla Maples'}},{data:{id:'Q23000814',name:'Barron Trump'}},{data:{id:'Q23000827',name:'Chloe Sophia Trump'}},{data:{id:'Q325106',name:'Silvestre Siale Bileka'}},{data:{id:'Q328370',name:'Egbert Benson'}},{data:{id:'Q328440',name:'Jonathan Ward'}},{data:{id:'Q333937',name:'Michael Gove'}},{data:{id:'Q6397921',name:'Kewal Krishan'}},{data:{id:'Q6410165',name:'Kimmane Rathnakar'}},{data:{id:'Q6427411',name:'Kollur Mallappa'}},{data:{id:'Q6428922',name:'Konda Surekha'}},{data:{id:'Q6445145',name:'Kunwar Vikram Singh'}},{data:{id:'Q6511127',name:'Mothey Vedakumari'}},{data:{id:'Q28860124',name:'James Bartlett'}},{data:{id:'Q28656868',name:'Raul Acero'}},{data:{id:'Q28869303',name:'Ryan Dennis'}},{data:{id:'Q28943640',name:'Helen Simonson'}},{data:{id:'Q29068710',name:'Sable Elyse Smith'}},{data:{id:'Q30305312',name:'Dave Nemetz'}},{data:{id:'Q26844403',name:'James Hamblin'}},{data:{id:'Q32860389',name:'Frank Knight'}},{data:{id:'Q258989',name:'Roma Downey'}},{data:{id:'Q3017398',name:'David Anspaugh'}},{data:{id:'Q22997111',name:'Cameron Burnett'}},{data:{id:'Q1942598',name:'Mohamed Mahmoud'}},{data:{id:'Q647048',name:'Maximos V Hakim'}},{data:{id:'Q544296',name:'Gregory III Laham'}},{data:{id:'Q21522922',name:'Edmond Peyron'}},{data:{id:'Q21964380',name:'Fabien Clain'}},{data:{id:'Q202581',name:'label'}},{data:{id:'Q725356',name:'bend sinister'}},{data:{id:'Q643584',name:'point'}},{data:{id:'Q1265761',name:'roundel'}},{data:{id:'Q1267314',name:'canton'}},{data:{id:'Q1475346',name:'chief'}},{data:{id:'Q2350601',name:'T65 telephone'}},{data:{id:'Q593676',name:'pale'}},{data:{id:'Q1193187',name:'Ron Brown'}},{data:{id:'Q5082869',name:'Charles Manatt'}},{data:{id:'Q6026540',name:'Indore BRTS'}},{data:{id:'Q7304502',name:'Red Line'}},{data:{id:'Q6698773',name:'Ludhiana Metro'}},{data:{id:'Q5044466',name:'Carol McCain'}},{data:{id:'Q240628',name:'Cindy McCain'}},{data:{id:'Q6211184',name:'Joe McCain'}},{data:{id:'Q4993396',name:'Roberta McCain'}},{data:{id:'Q22810647',name:'Sidney McCain'}},{data:{id:'Q22810653',name:'Bridget McCain'}},{data:{id:'Q30315025',name:'Google Wavenet'}},{data:{id:'Q777821',name:'Konstantin Flavitsky'}},{data:{id:'Q955906',name:'Pinchus Kremegne'}},{data:{id:'Q727637',name:'Wojciech Kossak'}},{data:{id:'Q2309952',name:'Peter Edward Stroehling'}},{data:{id:'Q164765',name:'Alexander Blok'}},{data:{id:'Q4242784',name:'Nikifor Krylov'}},{data:{id:'Q381950',name:'Antoine Pevsner'}},{data:{id:'Q468618',name:'Dominique Vivant'}},{data:{id:'Q546558',name:'Yevgeny Lansere'}},{data:{id:'Q210315',name:'Jacque Fresco'}},{data:{id:'Q2614606',name:'Richard Young'}},{data:{id:'Q3293192',name:'Marine'}},{data:{id:'Q180342',name:'Warren Sapp'}},{data:{id:'Q4978252',name:'Bruce Sarafian'}},{data:{id:'Q1703749',name:'Kathleen Cody'}},{data:{id:'Q6196408',name:'Jim Lewis'}},{data:{id:'Q2700668',name:'Greg Cipes'}},{data:{id:'Q202295',name:'Tracy McGrady'}},{data:{id:'Q6270688',name:'Jon FX'}},{data:{id:'Q23000821',name:'Joseph Frederick Kushner'}},{data:{id:'Q242351',name:'Ivana Trump'}},{data:{id:'Q21070387',name:'Frederick Trump'}},{data:{id:'Q12071552',name:'Tiffany Trump'}},{data:{id:'Q299553',name:'Leona Naess'}},{data:{id:'Q21421088',name:'fructose uniporter activity'}},{data:{id:'Q4112619',name:'Jeff Dwire'}},{data:{id:'Q4112334',name:'Virginia Clinton Kelley'}},{data:{id:'Q27700490',name:'Leon Ritzenthaler'}},{data:{id:'Q361366',name:'Robert Lansing'}},{data:{id:'Q364484',name:'Thomas Andrews'}},{data:{id:'Q359534',name:'Beriah Magoffin'}},{data:{id:'Q361224',name:'John Wentworth'}},{data:{id:'Q678551',name:'American Jews'}},{data:{id:'Q727928',name:'Asian American'}},{data:{id:'Q4689053',name:'Afghan American'}},{data:{id:'Q1150312',name:'Greek American'}},{data:{id:'Q1156766',name:'Japanese American'}},{data:{id:'Q1146100',name:'Chinese American'}},{data:{id:'Q6741486',name:'Malawian American'}},{data:{id:'Q7125803',name:'Pakistani American'}},{data:{id:'Q276879',name:'Korean American'}},{data:{id:'Q50276612',name:'John Edward'}},{data:{id:'Q16839592',name:'Games Distillery'}},{data:{id:'Q23055259',name:'Shimmer'}},{data:{id:'Q18150030',name:'Fates Forever'}},{data:{id:'Q27991027',name:'Make Up'}},{data:{id:'Q73058',name:'Willard Boyle'}},{data:{id:'Q961580',name:'Arto Tchakmaktchian'}},{data:{id:'Q2835169',name:'Alfred Halasa'}},{data:{id:'Q3121552',name:'Guy Bernier'}},{data:{id:'Q546453',name:'Ferenc Rofusz'}},{data:{id:'Q513043',name:'Raymond Lemieux'}},{data:{id:'Q5956770',name:'Ali Mohammad Izadi'}},{data:{id:'Q5890040',name:'Guy Roger Mouanda'}},{data:{id:'Q20646406',name:'Jan Kopp'}},{data:{id:'Q21028005',name:'Amedeo Natoli'}},{data:{id:'Q17071396',name:'Mathias Bourgue'}},{data:{id:'Q16207890',name:'Joseph Chetrit'}},{data:{id:'Q16395688',name:'Nigoghos Sarafian'}},{data:{id:'Q21996891',name:'Loreta'}},{data:{id:'Q16047400',name:'Davood Emdadian'}},{data:{id:'Q28708677',name:'Virtudes Cuevas'}},{data:{id:'Q16193242',name:'Tom McAlpin'}},{data:{id:'Q49712061',name:'David Hogg'}},{data:{id:'Q51120365',name:'Kyle Kashuv'}},{data:{id:'Q50957278',name:'Alfonso Calderon'}},{data:{id:'Q50380052',name:'Fred Guttenberg'}},{data:{id:'Q51858262',name:'Ryan Deitsch'}},{data:{id:'Q50931078',name:'Alex Wind'}},{data:{id:'Q21622155',name:'Richard Muzaev'}},{data:{id:'Q21932494',name:'Irina Zenovka'}},{data:{id:'Q23722455',name:'Andrei'}},{data:{id:'Q24010621',name:'Sergey Aslanyan'}},{data:{id:'Q24055477',name:'John Mark Dougan'}},{data:{id:'Q24868590',name:'Ioulia Chtchetinina'}},{data:{id:'Q22279299',name:'Sofia Moshevich'}},{data:{id:'Q1332557',name:'Ellsworth Foote'}},{data:{id:'Q382319',name:'Antoin Sevruguin'}},{data:{id:'Q6165892',name:'Jawad Salehi'}},{data:{id:'Q2509225',name:'Zahra Bahrami'}},{data:{id:'Q20741355',name:'Negar Mortazavi'}},{data:{id:'Q16090555',name:'Hassan Rahnavardi'}},{data:{id:'Q4543444',name:'Soleiman Mehdizadeh'}},{data:{id:'Q18709276',name:'Gholamali Soleimani'}},{data:{id:'Q71834',name:'Darco'}},{data:{id:'Q207694',name:'art museum'}},{data:{id:'Q383092',name:'art school'}},{data:{id:'Q2470594',name:'AKhRR'}},{data:{id:'Q4114109',name:'Yefim Vodonos'}},{data:{id:'Q1833348',name:'Igor Putin'}},{data:{id:'Q233282',name:'Lyudmila Putina'}},{data:{id:'Q22682071',name:'Kirill Shamalov'}},{data:{id:'Q19300864',name:'Maria Ivanovna Putina'}},{data:{id:'Q19300969',name:'Spiridon Ivanovich Putin'}},{data:{id:'Q15087614',name:'Roman Putin'}},{data:{id:'Q19364345',name:'Katerina Tikhonova'}},{data:{id:'Q264238',name:'newsletter'}},{data:{id:'Q1019996',name:'stock exchange newsletter'}},{data:{id:'Q2740804',name:'quarterly journal'}},{data:{id:'Q7533881',name:'Skamija'}},{data:{id:'Q2421910',name:'medical press'}},{data:{id:'Q7114410',name:'Owen Brown'}},{data:{id:'Q7407579',name:'Sam Harper'}},{data:{id:'Q7647934',name:'Susan Hart'}},{data:{id:'Q7827479',name:'Tory Christman'}},{data:{id:'Q7343505',name:'Robert Desiderio'}},{data:{id:'Q7564073',name:'Soudabeh Moradian'}},{data:{id:'Q16030493',name:'Hiram Leavitt'}},{data:{id:'Q18686181',name:'Scott Fox'}},{data:{id:'Q192064',name:'Svetlana Kuznetsova'}},{data:{id:'Q3311374',name:'Micheline Coulibaly'}},{data:{id:'Q3524574',name:'Saritha'}},{data:{id:'Q4405218',name:'Lara Habib Chamat'}},{data:{id:'Q277288',name:'Radhika'}},{data:{id:'Q6354364',name:'Kalpana Iyer'}},{data:{id:'Q7803316',name:'Tim Clark'}},{data:{id:'Q230231',name:'Tamira Paszek'}},{data:{id:'Q383541',name:'Basshunter'}},{data:{id:'Q15070048',name:'Sasha Obama'}},{data:{id:'Q28778413',name:'Stuart'}},{data:{id:'Q15070044',name:'Malia Obama'}},{data:{id:'Q13133',name:'Michelle Obama'}},{data:{id:'Q4928623',name:'Blowout'}},{data:{id:'Q1167263',name:'epaulette mate'}},{data:{id:'Q903961',name:'smothered mate'}},{data:{id:'Q1516940',name:'Prinsjesdag'}},{data:{id:'Q11704',name:'Election Day'}},{data:{id:'Q8004330',name:'William Allan Neilson'}},{data:{id:'Q1705900',name:'Paul Nolte'}},{data:{id:'Q5266430',name:'Devah Pager'}},{data:{id:'Q23091453',name:'Anne Case'}},{data:{id:'Q47093228',name:'Stella Ghervas'}},{data:{id:'Q7358341',name:'Roger Hilsman'}},{data:{id:'Q7660531',name:'Syksey'}},{data:{id:'Q8017589',name:'William Riley'}},{data:{id:'Q7819658',name:'Tommy Manville'}},{data:{id:'Q13562428',name:'Jessica Lappin'}},{data:{id:'Q6832551',name:'Michael Marshall'}},{data:{id:'Q7101696',name:'Orfeh'}},{data:{id:'Q7373210',name:'Roy Niederhoffer'}},{data:{id:'Q11101017',name:'Lionel'}},{data:{id:'Q7681850',name:'Tamsen Fadal'}},{data:{id:'Q16730113',name:'Robert Jackson'}},{data:{id:'Q15648611',name:'Nikita Singh'}},{data:{id:'Q15973005',name:'Kate Stoltzfus'}},{data:{id:'Q15987803',name:'Neiman Gracie'}},{data:{id:'Q16017566',name:'Marshall Sehorn'}},{data:{id:'Q16201823',name:'John Gomes'}},{data:{id:'Q16214594',name:'Julie Roginsky'}},{data:{id:'Q16223918',name:'Sean Robinson'}},{data:{id:'Q3687628',name:'Twitter bot'}},{data:{id:'Q6195563',name:'Jim Hensley'}},{data:{id:'Q4885543',name:'Ben Domenech'}},{data:{id:'Q200261',name:'Tom Welling'}},{data:{id:'Q6769807',name:'Mark Spitznagel'}},{data:{id:'Q742571',name:'John Paul Wild'}},{data:{id:'Q4756367',name:'Andrew Blackbird'}},{data:{id:'Q113233',name:'Audrey Niffenegger'}},{data:{id:'Q16107216',name:'Jan BenDor'}},{data:{id:'Q4899487',name:'Beverly Buchanan'}},{data:{id:'Q1151763',name:'Theodore Roethke'}},{data:{id:'Q5343197',name:'Edward Groesbeck Voss'}},],
+                    edges: [{data:{source:'Q3294019',target:'Q755975'}},{data:{source:'Q3294019',target:'Q258989'}},{data:{source:'Q3294019',target:'Q3017398'}},{data:{source:'Q3294019',target:'Q22997111'}},{data:{source:'Q755975',target:'Q253567'}},{data:{source:'Q5355185',target:'Q253567'}},{data:{source:'Q5355185',target:'Q22686'}},{data:{source:'Q5355185',target:'Q13371'}},{data:{source:'Q5355185',target:'Q13974'}},{data:{source:'Q253567',target:'Q129'}},{data:{source:'Q253567',target:'Q30'}},{data:{source:'Q253567',target:'Q13974'}},{data:{source:'Q253567',target:'Q7748'}},{data:{source:'Q253567',target:'Q616856'}},{data:{source:'Q253567',target:'Q4800911'}},{data:{source:'Q253567',target:'Q7347849'}},{data:{source:'Q253567',target:'Q2170872'}},{data:{source:'Q13974',target:'Q129'}},{data:{source:'Q22686',target:'Q735'}},{data:{source:'Q22686',target:'Q846570'}},{data:{source:'Q22686',target:'Q9684'}},{data:{source:'Q22686',target:'Q1553390'}},{data:{source:'Q22686',target:'Q60'}},{data:{source:'Q22686',target:'Q30'}},{data:{source:'Q22686',target:'Q128'}},{data:{source:'Q22686',target:'Q1124'}},{data:{source:'Q22686',target:'Q6294'}},{data:{source:'Q22686',target:'Q159'}},{data:{source:'Q22686',target:'Q130'}},{data:{source:'Q22686',target:'Q5003490'}},{data:{source:'Q22686',target:'Q7747'}},{data:{source:'Q22686',target:'Q11299'}},{data:{source:'Q22686',target:'Q29552'}},{data:{source:'Q22686',target:'Q18057751'}},{data:{source:'Q22686',target:'Q6193301'}},{data:{source:'Q22686',target:'Q17084460'}},{data:{source:'Q22686',target:'Q16883676'}},{data:{source:'Q22686',target:'Q2462124'}},{data:{source:'Q22686',target:'Q16829670'}},{data:{source:'Q22686',target:'Q612'}},{data:{source:'Q22686',target:'Q186545'}},{data:{source:'Q22686',target:'Q14864384'}},{data:{source:'Q22686',target:'Q178790'}},{data:{source:'Q22686',target:'Q338067'}},{data:{source:'Q22686',target:'Q38926'}},{data:{source:'Q22686',target:'Q35525'}},{data:{source:'Q22686',target:'Q233240'}},{data:{source:'Q22686',target:'Q6245783'}},{data:{source:'Q22686',target:'Q794'}},{data:{source:'Q22686',target:'Q6408963'}},{data:{source:'Q22686',target:'Q25685236'}},{data:{source:'Q22686',target:'Q190752'}},{data:{source:'Q22686',target:'Q461063'}},{data:{source:'Q22686',target:'Q812'}},{data:{source:'Q22686',target:'Q99'}},{data:{source:'Q22686',target:'Q10225'}},{data:{source:'Q22686',target:'Q12344159'}},{data:{source:'Q22686',target:'Q4925477'}},{data:{source:'Q22686',target:'Q858'}},{data:{source:'Q22686',target:'Q3731533'}},{data:{source:'Q22686',target:'Q13628723'}},{data:{source:'Q22686',target:'Q239411'}},{data:{source:'Q22686',target:'Q432473'}},{data:{source:'Q22686',target:'Q2597050'}},{data:{source:'Q22686',target:'Q23000814'}},{data:{source:'Q22686',target:'Q23000827'}},{data:{source:'Q22686',target:'Q3752663'}},{data:{source:'Q735',target:'Q71834'}},{data:{source:'Q735',target:'Q207694'}},{data:{source:'Q735',target:'Q383092'}},{data:{source:'Q735',target:'Q2470594'}},{data:{source:'Q735',target:'Q4114109'}},{data:{source:'Q13371',target:'Q8004330'}},{data:{source:'Q13371',target:'Q1705900'}},{data:{source:'Q13371',target:'Q5266430'}},{data:{source:'Q13371',target:'Q23091453'}},{data:{source:'Q13371',target:'Q47093228'}},{data:{source:'Q30',target:'Q1137457'}},{data:{source:'Q30',target:'Q6294'}},{data:{source:'Q30',target:'Q1193236'}},{data:{source:'Q30',target:'Q918'}},{data:{source:'Q30',target:'Q794'}},{data:{source:'Q30',target:'Q5195456'}},{data:{source:'Q30',target:'Q10390'}},{data:{source:'Q30',target:'Q21929727'}},{data:{source:'Q30',target:'Q21932014'}},{data:{source:'Q30',target:'Q22087923'}},{data:{source:'Q30',target:'Q23705272'}},{data:{source:'Q30',target:'Q20979263'}},{data:{source:'Q30',target:'Q26215041'}},{data:{source:'Q16869716',target:'Q5503'}},{data:{source:'Q5503',target:'Q6026540'}},{data:{source:'Q5503',target:'Q7304502'}},{data:{source:'Q5503',target:'Q6698773'}},{data:{source:'Q846570',target:'Q678551'}},{data:{source:'Q846570',target:'Q727928'}},{data:{source:'Q846570',target:'Q4689053'}},{data:{source:'Q846570',target:'Q1150312'}},{data:{source:'Q846570',target:'Q1156766'}},{data:{source:'Q846570',target:'Q1146100'}},{data:{source:'Q846570',target:'Q6741486'}},{data:{source:'Q846570',target:'Q7125803'}},{data:{source:'Q846570',target:'Q276879'}},{data:{source:'Q16533',target:'Q18419'}},{data:{source:'Q16533',target:'Q325106'}},{data:{source:'Q16533',target:'Q328370'}},{data:{source:'Q16533',target:'Q328440'}},{data:{source:'Q16533',target:'Q333937'}},{data:{source:'Q18419',target:'Q28860124'}},{data:{source:'Q18419',target:'Q28656868'}},{data:{source:'Q18419',target:'Q28869303'}},{data:{source:'Q18419',target:'Q28943640'}},{data:{source:'Q18419',target:'Q29068710'}},{data:{source:'Q18419',target:'Q30305312'}},{data:{source:'Q18419',target:'Q26844403'}},{data:{source:'Q18419',target:'Q32860389'}},{data:{source:'Q9684',target:'Q1158586'}},{data:{source:'Q9684',target:'Q1185863'}},{data:{source:'Q1553390',target:'Q1332557'}},{data:{source:'Q1158326',target:'Q50008'}},{data:{source:'Q679',target:'Q1348074'}},{data:{source:'Q312889',target:'Q15063317'}},{data:{source:'Q60',target:'Q16730113'}},{data:{source:'Q60',target:'Q15648611'}},{data:{source:'Q60',target:'Q15973005'}},{data:{source:'Q60',target:'Q15987803'}},{data:{source:'Q60',target:'Q16017566'}},{data:{source:'Q60',target:'Q16201823'}},{data:{source:'Q60',target:'Q16214594'}},{data:{source:'Q60',target:'Q16223918'}},{data:{source:'Q128',target:'Q6294'}},{data:{source:'Q6294',target:'Q159'}},{data:{source:'Q6294',target:'Q229671'}},{data:{source:'Q6294',target:'Q5932520'}},{data:{source:'Q6294',target:'Q7823289'}},{data:{source:'Q6294',target:'Q5298463'}},{data:{source:'Q6294',target:'Q16210828'}},{data:{source:'Q6294',target:'Q1124'}},{data:{source:'Q29468',target:'Q66096'}},{data:{source:'Q29468',target:'Q7747'}},{data:{source:'Q29468',target:'Q373094'}},{data:{source:'Q29468',target:'Q366838'}},{data:{source:'Q29468',target:'Q367784'}},{data:{source:'Q29468',target:'Q368192'}},{data:{source:'Q29468',target:'Q368339'}},{data:{source:'Q29468',target:'Q368717'}},{data:{source:'Q29468',target:'Q369068'}},{data:{source:'Q29468',target:'Q370284'}},{data:{source:'Q29468',target:'Q370668'}},{data:{source:'Q437970',target:'Q50000'}},{data:{source:'Q437970',target:'Q299553'}},{data:{source:'Q50000',target:'Q4928623'}},{data:{source:'Q50000',target:'Q1167263'}},{data:{source:'Q50000',target:'Q903961'}},{data:{source:'Q40231',target:'Q1032197'}},{data:{source:'Q1193236',target:'Q264238'}},{data:{source:'Q1193236',target:'Q1019996'}},{data:{source:'Q1193236',target:'Q2740804'}},{data:{source:'Q1193236',target:'Q7533881'}},{data:{source:'Q1193236',target:'Q2421910'}},{data:{source:'Q1520122',target:'Q1124'}},{data:{source:'Q1124',target:'Q50614664'}},{data:{source:'Q1124',target:'Q1166'}},{data:{source:'Q1124',target:'Q4112619'}},{data:{source:'Q1124',target:'Q229671'}},{data:{source:'Q1124',target:'Q4112334'}},{data:{source:'Q1124',target:'Q27700490'}},{data:{source:'Q127',target:'Q29552'}},{data:{source:'Q127',target:'Q1516940'}},{data:{source:'Q127',target:'Q11704'}},{data:{source:'Q29552',target:'Q3947'}},{data:{source:'Q29552',target:'Q361366'}},{data:{source:'Q29552',target:'Q364484'}},{data:{source:'Q29552',target:'Q359534'}},{data:{source:'Q29552',target:'Q361224'}},{data:{source:'Q1166',target:'Q200261'}},{data:{source:'Q1166',target:'Q6769807'}},{data:{source:'Q1166',target:'Q742571'}},{data:{source:'Q1166',target:'Q4756367'}},{data:{source:'Q1166',target:'Q113233'}},{data:{source:'Q1166',target:'Q16107216'}},{data:{source:'Q1166',target:'Q4899487'}},{data:{source:'Q1166',target:'Q1151763'}},{data:{source:'Q1166',target:'Q5343197'}},{data:{source:'Q159',target:'Q649'}},{data:{source:'Q159',target:'Q777821'}},{data:{source:'Q159',target:'Q955906'}},{data:{source:'Q159',target:'Q727637'}},{data:{source:'Q159',target:'Q2309952'}},{data:{source:'Q159',target:'Q164765'}},{data:{source:'Q159',target:'Q4242784'}},{data:{source:'Q159',target:'Q381950'}},{data:{source:'Q159',target:'Q468618'}},{data:{source:'Q159',target:'Q546558'}},{data:{source:'Q130',target:'Q86483'}},{data:{source:'Q130',target:'Q169940'}},{data:{source:'Q918',target:'Q3687628'}},{data:{source:'Q5003490',target:'Q27829251'}},{data:{source:'Q7747',target:'Q1833348'}},{data:{source:'Q7747',target:'Q233282'}},{data:{source:'Q7747',target:'Q22682071'}},{data:{source:'Q7747',target:'Q19300864'}},{data:{source:'Q7747',target:'Q19300969'}},{data:{source:'Q7747',target:'Q15087614'}},{data:{source:'Q7747',target:'Q19364345'}},{data:{source:'Q15753046',target:'Q355'}},{data:{source:'Q11299',target:'Q7358341'}},{data:{source:'Q11299',target:'Q7660531'}},{data:{source:'Q11299',target:'Q8017589'}},{data:{source:'Q11299',target:'Q7819658'}},{data:{source:'Q11299',target:'Q13562428'}},{data:{source:'Q11299',target:'Q6832551'}},{data:{source:'Q11299',target:'Q7101696'}},{data:{source:'Q11299',target:'Q7373210'}},{data:{source:'Q11299',target:'Q11101017'}},{data:{source:'Q11299',target:'Q7681850'}},{data:{source:'Q1326365',target:'Q1414593'}},{data:{source:'Q1326365',target:'Q1694701'}},{data:{source:'Q1326365',target:'Q1782417'}},{data:{source:'Q6193301',target:'Q58370944'}},{data:{source:'Q17084460',target:'Q30315025'}},{data:{source:'Q2145369',target:'Q1357640'}},{data:{source:'Q2462124',target:'Q239411'}},{data:{source:'Q2462124',target:'Q16829670'}},{data:{source:'Q2462124',target:'Q3752663'}},{data:{source:'Q239411',target:'Q3731533'}},{data:{source:'Q239411',target:'Q13628723'}},{data:{source:'Q239411',target:'Q23000814'}},{data:{source:'Q239411',target:'Q23000821'}},{data:{source:'Q239411',target:'Q3752663'}},{data:{source:'Q239411',target:'Q242351'}},{data:{source:'Q239411',target:'Q21070387'}},{data:{source:'Q239411',target:'Q12071552'}},{data:{source:'Q612',target:'Q192064'}},{data:{source:'Q612',target:'Q3311374'}},{data:{source:'Q612',target:'Q3524574'}},{data:{source:'Q612',target:'Q4405218'}},{data:{source:'Q612',target:'Q277288'}},{data:{source:'Q612',target:'Q6354364'}},{data:{source:'Q612',target:'Q7803316'}},{data:{source:'Q612',target:'Q230231'}},{data:{source:'Q612',target:'Q383541'}},{data:{source:'Q14864384',target:'Q1415'}},{data:{source:'Q14864384',target:'Q21421088'}},{data:{source:'Q1415',target:'Q3264332'}},{data:{source:'Q1415',target:'Q139376'}},{data:{source:'Q1415',target:'Q592426'}},{data:{source:'Q1415',target:'Q6779390'}},{data:{source:'Q1415',target:'Q317638'}},{data:{source:'Q1415',target:'Q7487426'}},{data:{source:'Q1415',target:'Q2647934'}},{data:{source:'Q1415',target:'Q1568729'}},{data:{source:'Q38926',target:'Q267628'}},{data:{source:'Q38926',target:'Q1061047'}},{data:{source:'Q38926',target:'Q309481'}},{data:{source:'Q38926',target:'Q1358344'}},{data:{source:'Q38926',target:'Q1510260'}},{data:{source:'Q38926',target:'Q2495037'}},{data:{source:'Q35525',target:'Q23000814'}},{data:{source:'Q35525',target:'Q15070048'}},{data:{source:'Q35525',target:'Q28778413'}},{data:{source:'Q35525',target:'Q15070044'}},{data:{source:'Q35525',target:'Q13133'}},{data:{source:'Q233240',target:'Q15846402'}},{data:{source:'Q233240',target:'Q4968550'}},{data:{source:'Q233240',target:'Q5999461'}},{data:{source:'Q233240',target:'Q35742'}},{data:{source:'Q478798',target:'Q588338'}},{data:{source:'Q478798',target:'Q202581'}},{data:{source:'Q478798',target:'Q725356'}},{data:{source:'Q478798',target:'Q643584'}},{data:{source:'Q478798',target:'Q1265761'}},{data:{source:'Q478798',target:'Q1267314'}},{data:{source:'Q478798',target:'Q1475346'}},{data:{source:'Q478798',target:'Q2350601'}},{data:{source:'Q478798',target:'Q593676'}},{data:{source:'Q588338',target:'Q16193242'}},{data:{source:'Q588338',target:'Q49712061'}},{data:{source:'Q588338',target:'Q51120365'}},{data:{source:'Q588338',target:'Q50957278'}},{data:{source:'Q588338',target:'Q50380052'}},{data:{source:'Q588338',target:'Q51858262'}},{data:{source:'Q588338',target:'Q50931078'}},{data:{source:'Q331401',target:'Q80687'}},{data:{source:'Q1158586',target:'Q10225'}},{data:{source:'Q142',target:'Q858'}},{data:{source:'Q142',target:'Q20646406'}},{data:{source:'Q142',target:'Q21028005'}},{data:{source:'Q142',target:'Q17071396'}},{data:{source:'Q142',target:'Q16207890'}},{data:{source:'Q142',target:'Q16395688'}},{data:{source:'Q142',target:'Q21996891'}},{data:{source:'Q142',target:'Q16047400'}},{data:{source:'Q142',target:'Q28708677'}},{data:{source:'Q858',target:'Q1942598'}},{data:{source:'Q858',target:'Q647048'}},{data:{source:'Q858',target:'Q544296'}},{data:{source:'Q858',target:'Q21522922'}},{data:{source:'Q858',target:'Q21964380'}},{data:{source:'Q794',target:'Q382319'}},{data:{source:'Q794',target:'Q6165892'}},{data:{source:'Q794',target:'Q2509225'}},{data:{source:'Q794',target:'Q20741355'}},{data:{source:'Q794',target:'Q21996891'}},{data:{source:'Q794',target:'Q16090555'}},{data:{source:'Q794',target:'Q4543444'}},{data:{source:'Q794',target:'Q18709276'}},{data:{source:'Q801',target:'Q1218'}},{data:{source:'Q801',target:'Q374803'}},{data:{source:'Q801',target:'Q1399562'}},{data:{source:'Q801',target:'Q6804409'}},{data:{source:'Q801',target:'Q6894819'}},{data:{source:'Q1218',target:'Q548057'}},{data:{source:'Q1218',target:'Q1794269'}},{data:{source:'Q1218',target:'Q2120884'}},{data:{source:'Q1218',target:'Q2069742'}},{data:{source:'Q1218',target:'Q2082327'}},{data:{source:'Q1218',target:'Q5360310'}},{data:{source:'Q1218',target:'Q6836447'}},{data:{source:'Q1218',target:'Q7279232'}},{data:{source:'Q327245',target:'Q204'}},{data:{source:'Q327245',target:'Q3039253'}},{data:{source:'Q327245',target:'Q3233297'}},{data:{source:'Q327245',target:'Q3981826'}},{data:{source:'Q204',target:'Q7832825'}},{data:{source:'Q204',target:'Q1481389'}},{data:{source:'Q334',target:'Q659'}},{data:{source:'Q334',target:'Q299842'}},{data:{source:'Q334',target:'Q312663'}},{data:{source:'Q334',target:'Q455666'}},{data:{source:'Q334',target:'Q5209775'}},{data:{source:'Q334',target:'Q4757349'}},{data:{source:'Q334',target:'Q5362281'}},{data:{source:'Q334',target:'Q1756638'}},{data:{source:'Q334',target:'Q7238183'}},{data:{source:'Q334',target:'Q7297669'}},{data:{source:'Q334',target:'Q7344541'}},{data:{source:'Q1185863',target:'Q1193187'}},{data:{source:'Q1185863',target:'Q5082869'}},{data:{source:'Q649',target:'Q21622155'}},{data:{source:'Q649',target:'Q21932494'}},{data:{source:'Q649',target:'Q23722455'}},{data:{source:'Q649',target:'Q24010621'}},{data:{source:'Q649',target:'Q24055477'}},{data:{source:'Q649',target:'Q24868590'}},{data:{source:'Q649',target:'Q21996891'}},{data:{source:'Q649',target:'Q22279299'}},{data:{source:'Q190752',target:'Q59561180'}},{data:{source:'Q10390',target:'Q5044466'}},{data:{source:'Q10390',target:'Q240628'}},{data:{source:'Q10390',target:'Q6211184'}},{data:{source:'Q10390',target:'Q461063'}},{data:{source:'Q10390',target:'Q4993396'}},{data:{source:'Q10390',target:'Q22810647'}},{data:{source:'Q10390',target:'Q22810653'}},{data:{source:'Q461063',target:'Q6195563'}},{data:{source:'Q461063',target:'Q240628'}},{data:{source:'Q461063',target:'Q4993396'}},{data:{source:'Q461063',target:'Q4885543'}},{data:{source:'Q461063',target:'Q22810653'}},{data:{source:'Q16',target:'Q181574'}},{data:{source:'Q16',target:'Q73058'}},{data:{source:'Q16',target:'Q961580'}},{data:{source:'Q16',target:'Q2835169'}},{data:{source:'Q16',target:'Q3121552'}},{data:{source:'Q16',target:'Q546453'}},{data:{source:'Q16',target:'Q513043'}},{data:{source:'Q16',target:'Q5956770'}},{data:{source:'Q16',target:'Q5890040'}},{data:{source:'Q1192241',target:'Q4268'}},{data:{source:'Q166032',target:'Q851'}},{data:{source:'Q851',target:'Q29033505'}},{data:{source:'Q851',target:'Q16732868'}},{data:{source:'Q851',target:'Q42719549'}},{data:{source:'Q851',target:'Q1317'}},{data:{source:'Q851',target:'Q62626'}},{data:{source:'Q34508',target:'Q56244961'}},{data:{source:'Q34508',target:'Q16839592'}},{data:{source:'Q34508',target:'Q23055259'}},{data:{source:'Q34508',target:'Q18150030'}},{data:{source:'Q34508',target:'Q27991027'}},{data:{source:'Q3358412',target:'Q1430068'}},{data:{source:'Q812',target:'Q210315'}},{data:{source:'Q812',target:'Q2614606'}},{data:{source:'Q812',target:'Q3293192'}},{data:{source:'Q812',target:'Q180342'}},{data:{source:'Q812',target:'Q4978252'}},{data:{source:'Q812',target:'Q1703749'}},{data:{source:'Q812',target:'Q6196408'}},{data:{source:'Q812',target:'Q2700668'}},{data:{source:'Q812',target:'Q202295'}},{data:{source:'Q812',target:'Q6270688'}},{data:{source:'Q99',target:'Q7114410'}},{data:{source:'Q99',target:'Q7407579'}},{data:{source:'Q99',target:'Q7647934'}},{data:{source:'Q99',target:'Q7827479'}},{data:{source:'Q99',target:'Q7343505'}},{data:{source:'Q99',target:'Q7564073'}},{data:{source:'Q99',target:'Q16030493'}},{data:{source:'Q99',target:'Q18686181'}},{data:{source:'Q10225',target:'Q6397921'}},{data:{source:'Q10225',target:'Q6410165'}},{data:{source:'Q10225',target:'Q6427411'}},{data:{source:'Q10225',target:'Q6428922'}},{data:{source:'Q10225',target:'Q6445145'}},{data:{source:'Q10225',target:'Q6511127'}},{data:{source:'Q12344159',target:'Q8743'}},{data:{source:'Q4925477',target:'Q50276612'}},{data:{source:'Q20011464',target:'Q61'}},{data:{source:'Q61',target:'Q21866302'}},{data:{source:'Q61',target:'Q19876550'}},{data:{source:'Q61',target:'Q20011582'}},{data:{source:'Q61',target:'Q21064129'}},{data:{source:'Q61',target:'Q21088426'}},]
+                }
+            });
+
+
+            var doubleClickDelayMs = 350; var previousTapStamp;
+            cy.on('tap', function(e) {
+                var currentTapStamp = e.timeStamp;
+                var msFromLastTap = currentTapStamp - previousTapStamp;
+                if (msFromLastTap < doubleClickDelayMs) {
+                    e.target.trigger('doubleTap', e);
+                }
+                previousTapStamp = currentTapStamp;
+            });
+			// double click - goto wikidata
+            cy.on('doubleTap', function(event) {
+                if (event.target._private.data.id.toString().startsWith("Q")){
+                    location.assign('https://www.wikidata.org/wiki/' + event.target._private.data.id.toString() );
+                }
+            });
+
+            var api = cy.viewUtilities({
+                neighbor: function(node){
+                    return node.closedNeighborhood();
+                },
+                neighborSelectTime: 1000
+            });
+
+            $('#zoomToSelected').click( function(){
+                api.disableMarqueeZoom();
+                var selectedEles = cy.$(":selected");
+                api.zoomToSelected(selectedEles);
+            });
+
+            var toggleHighlight = false;
+            $("#highlightNeighbors").click(function () {
+                if(!toggleHighlight) {
+                    api.disableMarqueeZoom();
+                    if (cy.$(":selected").length > 0)
+                        api.highlightNeighbors(cy.$(":selected"));
+                    toggleHighlight = true;
+                }else {
+                    api.disableMarqueeZoom();
+                    api.removeHighlights();
+                    toggleHighlight = false;
+                }
+            });
+
+            // Increase border width to show nodes with hidden neighbors
+            function thickenBorder(eles){
+                eles.forEach(function( ele ){
+                    var defaultBorderWidth = Number(ele.css("border-width").substring(0,ele.css("border-width").length-2));
+                    ele.css("border-width", defaultBorderWidth + 2);
+                });
+                return eles;
+            }
+            // Decrease border width when hidden neighbors of the nodes become visible
+            function thinBorder(eles){
+                eles.forEach(function( ele ){
+                    var defaultBorderWidth = Number(ele.css("border-width").substring(0,ele.css("border-width").length-2));
+                    ele.css("border-width", defaultBorderWidth - 2);
+                });
+                return eles;
+            }
+
+			$("#shortestPath").click(function () {
+				var dfs = cy.elements().aStar({
+				  root: cy.$(":selected")[0],
+				  goal: cy.$(":selected")[1],
+				  directed: false
+				});
+				dfs.path.select()
+				console.log(dfs.distance)
+			});
+
+
+            $("#hideSelected").click(function () {
+                api.disableMarqueeZoom();
+                var nodesWithHiddenNeighbor = cy.edges(":hidden").connectedNodes(':visible');
+                thinBorder(nodesWithHiddenNeighbor);
+                api.hide(cy.$(":selected"));
+                nodesWithHiddenNeighbor = cy.edges(":hidden").connectedNodes(':visible');
+                thickenBorder(nodesWithHiddenNeighbor);
+            });
+
+            $("#showAll").click(function () {
+                api.disableMarqueeZoom();
+                var nodesWithHiddenNeighbor = cy.edges(":hidden").connectedNodes(':visible');
+                thinBorder(nodesWithHiddenNeighbor);
+                api.show(cy.elements());
+            });
+            $("#selectNeighbors").click(function () {
+                api.disableMarqueeZoom();
+                if (cy.$(":selected").length > 0)
+                    ((cy.$(":selected")).add((cy.$(":selected")).descendants()).closedNeighborhood()).select();
+            });
+
+            $("#showAllPaths").click(function () {
+                if (cy.$(":selected").length > 0) {
+                    // Paths // demo your collection ext
+                    let allPaths = (cy.$(":selected")).cytoscapeAllPaths(/* args... */);
+                    console.log(allPaths);
+                    // // Usage example: display each path at regular intervals
+                    // let maxTimes = allPaths.length;
+                    // let currentTimes = 0;
+                    // let selectedEles;
+                    // let interval = setInterval(() => {
+                    //     if (currentTimes === maxTimes) {
+                    //         currentTimes = 0;
+                    //     } else {
+                    //         if (selectedEles) selectedEles.unselect();
+                    //         selectedEles = allPaths[currentTimes];
+                    //         selectedEles.select();
+                    //         currentTimes++;
+                    //     }
+                    // }, 1000);
+
+                }
+            });
+
+            // init zoom level
+            cy.zoom({
+                level: (cy.zoom()*0.5),
+                position: { x: 0, y: 0 }
+            });
+			var toggleAnomaly = false;
+			var anomaliesEdges = [['Q253567', 'Q13974'], ['Q253567', 'Q129'], ['Q253567', 'Q30'], ['Q13974', 'Q129'], ['Q30', 'Q6294'], ['Q30', 'Q1193236'], ['Q30', 'Q918'], ['Q30', 'Q794'], ['Q30', 'Q10390'], ['Q9684', 'Q1158586'], ['Q1553390', 'Q1332557'], ['Q1158326', 'Q50008'], ['Q679', 'Q1348074'], ['Q312889', 'Q15063317'], ['Q128', 'Q6294'], ['Q29468', 'Q7747'], ['Q40231', 'Q1032197'], ['Q127', 'Q29552'], ['Q918', 'Q3687628'], ['Q5003490', 'Q27829251'], ['Q15753046', 'Q355'], ['Q6193301', 'Q58370944'], ['Q17084460', 'Q30315025'], ['Q2145369', 'Q1357640'], ['Q14864384', 'Q21421088'], ['Q478798', 'Q588338'], ['Q331401', 'Q80687'], ['Q142', 'Q858'], ['Q142', 'Q21996891'], ['Q794', 'Q21996891'], ['Q649', 'Q21996891'], ['Q190752', 'Q59561180'], ['Q10390', 'Q461063'], ['Q1192241', 'Q4268'], ['Q3358412', 'Q1430068'], ['Q12344159', 'Q8743'], ['Q4925477', 'Q50276612']];
+			$("#anomaly").click(function () {
+                if(toggleAnomaly){
+                    var color = '#999';
+                    toggleAnomaly = false;
+                }
+                else if(!toggleAnomaly){
+                    color = 'red';
+                    toggleAnomaly = true;
+				}
+            cy.edges(function(element){
+                if(element.isEdge()){
+                    let source = element._private.data.source.toString();
+                    let target = element._private.data.target.toString();
+					for (let i = 0; i < anomaliesEdges.length; i++) {
+					    if((anomaliesEdges[i][0] === source) && (anomaliesEdges[i][1] === target)) {
+					        element.style({ 'line-color': color });
+                            console.log(element);
+                        }
+					}
+				}
+			});
+
+			});
+
+            function search(){
+                    let searchValue = $('#autocomplete-input').val();
+                    if(searchValue !== ""){
+                        cy.nodes('[^stam]').unselect();
+                        cy.nodes('[name = "' + searchValue.toString() + '"]').select();
+                        api.disableMarqueeZoom();
+                        var selectedEles = cy.$(":selected");
+                        api.zoomToSelected(selectedEles);
+
+                        $('#autocomplete-input').val("");
+                    }
+                    return false;
+                }
+
+
+                var autoCompleteOptions = {data: {'Mark Burnett': null, 'Survivor': null, 'Burnett': null, 'apprentice': null, 'NBC': null, 'Thursday': null, 'Donald Trump': null, 'art': null, 'Harvard University': null, 'United States of America': null, 'law': null, 'Dunlap': null, 'rapid transit': null, 'Americans': null, 'judge': null, 'Brooklyn': null, 'The New York Times': null, 'United States Department of Justice': null, 'Kaiser': null, 'The Times': null, 'west': null, 'Koch': null, 'Peter Minuit': null, 'Manhattan Island': null, 'New York City': null, 'Wednesday': null, 'Hillary Clinton': null, 'Republican Party': null, 'United States Senate': null, 'Ryan Adams': null, 'victory': null, 'election': null, 'Exit': null, 'Muslims': null, 'news media': null, 'Getty Images': null, 'Bill Clinton': null, 'Peninsula Hotel': null, 'Tuesday': null, 'Democratic Party': null, 'Michigan': null, 'Russia': null, 'Friday': null, 'Twitter': null, 'BuzzFeed': null, 'Vladimir Putin': null, 'Crisis': null, 'Facebook': null, 'Manhattan': null, 'elect': null, 'Patient Protection and Affordable Care Act': null, 'David': null, 'Jim Acosta': null, 'convolutional neural network': null, 'Spicer': null, 'Sean Spicer': null, 'Republican National Committee': null, 'Reince Priebus': null, 'The Trump Organization': null, 'Ivanka Trump': null, 'Dillon': null, 'Dubai': null, 'Midwestern United States': null, 'transporter activity': null, 'Indiana': null, 'trade union': null, 'Oval Office': null, 'news': null, 'White House': null, 'Stormy Daniels': null, 'image': null, 'Parkland': null, 'Rex Tillerson': null, 'secretary': null, 'John M. Dowd': null, 'Cohen': null, 'France': null, 'Syria': null, 'Iran': null, 'Mills': null, 'Israel': null, 'Jerusalem': null, '1983 United States embassy bombing': null, 'team': null, 'zero': null, 'Kim Jong': null, 'Singapore': null, 'north': null, 'Democratic National Committee': null, 'Moscow': null, 'Kavanaugh': null, 'supreme court': null, 'Justice Anthony Kennedy: His Jurisprudence and the Future of the Court': null, 'John McCain': null, 'Meghan McCain': null, 'Canada': null, 'North American Free Trade Agreement': null, 'Hurricane Florence': null, 'East Coast of the United States': null, 'The Washington Post': null, 'Saudi Arabia': null, 'video': null, 'Khashoggi': null, 'Hurricane Michael': null, 'Florida Panhandle': null, 'Florida': null, 'California': null, 'Indian National Congress': null, 'house': null, 'William': null, 'John': null, 'Maiko': null, 'articled clerk': null, 'Robert Mosher': null, 'Roy Orchard Woodruff': null, 'column': null, 'blood libel': null, 'obituary': null, 'newscast': null, 'Scoop': null, 'newspaper article': null, 'Benny Morris': null, 'Emil Grunzweig': null, 'Jichak Pressburger': null, 'Moisis Michail Bourlas': null, 'John Clarence Lincoln': null, 'Nathalie Morin': null, 'Sean Bott': null, 'Osama bin Laden': null, 'Albrecht Brandi': null, 'Black Friday': null, 'deforestation': null, 'James Wilson': null, 'Victor Ashe': null, 'Sumner Sewall': null, 'John Anthony Volpe': null, 'Phil Batt': null, 'Hubert Work': null, 'Edward Rell Madigan': null, 'Nelson Dingley': null, 'Donald Grant Nutter': null, 'Chelsea Clinton': null, 'Hugh Rodham': null, 'Tony Rodham': null, 'Dorothy Howell Rodham': null, 'The Hillary Doctrine': null, 'Antonia Kidman': null, 'Eduardo Saverin': null, 'Ho Ching': null, 'Daisy Turner': null, 'Andrew Huang': null, 'Elizabeth Alexander': null, 'Richard Chandler': null, 'Prakash Kumar Pallathadka': null, 'Ray Jefferson': null, 'Robert Friedland': null, 'Thomas Alva Edison': null, 'Antonio Zucca': null, 'Carlo Curti': null, 'Avanidhar Subrahmanyam': null, 'Ana Tiscornia': null, 'Joseph Fuisz': null, 'Darko Tresnjak': null, 'Brendon Miller': null, 'Shelbee Myne': null, 'Pat Myne': null, 'Alektra Blue': null, 'Johann II': null, 'Konrad von Ergersheim': null, 'Fred Trump': null, 'Kurt Wilhelm': null, 'Yaakov Litzman': null, 'Admon': null, 'Eliezer Moses': null, 'Eli Schwartz': null, 'Michel Kichka': null, 'Rachel Factor': null, 'trailing zero': null, 'leading zero': null, 'Dream Team': null, 'The Immortals': null, 'Team Alstare': null, 'Abbe Smith': null, 'Washington, D.C.': null, 'Frank Tomlinson': null, 'Vida Johnson': null, 'Tom Rogan': null, 'Tisha Lewis': null, 'Pete Daniel': null, 'Lovette': null, 'Zach Randolph': null, 'Del Harris': null, 'Mary Eileen Ahern': null, 'Jimmy Hoffa': null, 'Shamar Bailey': null, 'Howard Goldblatt': null, 'Hagood Hardy': null, 'Sharon Mobley Stow': null, 'Eric Trump': null, 'Jared Kushner': null, 'Melania Trump': null, 'Marla Maples': null, 'Barron Trump': null, 'Chloe Sophia Trump': null, 'Silvestre Siale Bileka': null, 'Egbert Benson': null, 'Jonathan Ward': null, 'Michael Gove': null, 'Kewal Krishan': null, 'Kimmane Rathnakar': null, 'Kollur Mallappa': null, 'Konda Surekha': null, 'Kunwar Vikram Singh': null, 'Mothey Vedakumari': null, 'James Bartlett': null, 'Raul Acero': null, 'Ryan Dennis': null, 'Helen Simonson': null, 'Sable Elyse Smith': null, 'Dave Nemetz': null, 'James Hamblin': null, 'Frank Knight': null, 'Roma Downey': null, 'David Anspaugh': null, 'Cameron Burnett': null, 'Mohamed Mahmoud': null, 'Maximos V Hakim': null, 'Gregory III Laham': null, 'Edmond Peyron': null, 'Fabien Clain': null, 'label': null, 'bend sinister': null, 'point': null, 'roundel': null, 'canton': null, 'chief': null, 'T65 telephone': null, 'pale': null, 'Ron Brown': null, 'Charles Manatt': null, 'Indore BRTS': null, 'Red Line': null, 'Ludhiana Metro': null, 'Carol McCain': null, 'Cindy McCain': null, 'Joe McCain': null, 'Roberta McCain': null, 'Sidney McCain': null, 'Bridget McCain': null, 'Google Wavenet': null, 'Konstantin Flavitsky': null, 'Pinchus Kremegne': null, 'Wojciech Kossak': null, 'Peter Edward Stroehling': null, 'Alexander Blok': null, 'Nikifor Krylov': null, 'Antoine Pevsner': null, 'Dominique Vivant': null, 'Yevgeny Lansere': null, 'Jacque Fresco': null, 'Richard Young': null, 'Marine': null, 'Warren Sapp': null, 'Bruce Sarafian': null, 'Kathleen Cody': null, 'Jim Lewis': null, 'Greg Cipes': null, 'Tracy McGrady': null, 'Jon FX': null, 'Joseph Frederick Kushner': null, 'Ivana Trump': null, 'Frederick Trump': null, 'Tiffany Trump': null, 'Leona Naess': null, 'fructose uniporter activity': null, 'Jeff Dwire': null, 'Virginia Clinton Kelley': null, 'Leon Ritzenthaler': null, 'Robert Lansing': null, 'Thomas Andrews': null, 'Beriah Magoffin': null, 'John Wentworth': null, 'American Jews': null, 'Asian American': null, 'Afghan American': null, 'Greek American': null, 'Japanese American': null, 'Chinese American': null, 'Malawian American': null, 'Pakistani American': null, 'Korean American': null, 'John Edward': null, 'Games Distillery': null, 'Shimmer': null, 'Fates Forever': null, 'Make Up': null, 'Willard Boyle': null, 'Arto Tchakmaktchian': null, 'Alfred Halasa': null, 'Guy Bernier': null, 'Ferenc Rofusz': null, 'Raymond Lemieux': null, 'Ali Mohammad Izadi': null, 'Guy Roger Mouanda': null, 'Jan Kopp': null, 'Amedeo Natoli': null, 'Mathias Bourgue': null, 'Joseph Chetrit': null, 'Nigoghos Sarafian': null, 'Loreta': null, 'Davood Emdadian': null, 'Virtudes Cuevas': null, 'Tom McAlpin': null, 'David Hogg': null, 'Kyle Kashuv': null, 'Alfonso Calderon': null, 'Fred Guttenberg': null, 'Ryan Deitsch': null, 'Alex Wind': null, 'Richard Muzaev': null, 'Irina Zenovka': null, 'Andrei': null, 'Sergey Aslanyan': null, 'John Mark Dougan': null, 'Ioulia Chtchetinina': null, 'Sofia Moshevich': null, 'Ellsworth Foote': null, 'Antoin Sevruguin': null, 'Jawad Salehi': null, 'Zahra Bahrami': null, 'Negar Mortazavi': null, 'Hassan Rahnavardi': null, 'Soleiman Mehdizadeh': null, 'Gholamali Soleimani': null, 'Darco': null, 'art museum': null, 'art school': null, 'AKhRR': null, 'Yefim Vodonos': null, 'Igor Putin': null, 'Lyudmila Putina': null, 'Kirill Shamalov': null, 'Maria Ivanovna Putina': null, 'Spiridon Ivanovich Putin': null, 'Roman Putin': null, 'Katerina Tikhonova': null, 'newsletter': null, 'stock exchange newsletter': null, 'quarterly journal': null, 'Skamija': null, 'medical press': null, 'Owen Brown': null, 'Sam Harper': null, 'Susan Hart': null, 'Tory Christman': null, 'Robert Desiderio': null, 'Soudabeh Moradian': null, 'Hiram Leavitt': null, 'Scott Fox': null, 'Svetlana Kuznetsova': null, 'Micheline Coulibaly': null, 'Saritha': null, 'Lara Habib Chamat': null, 'Radhika': null, 'Kalpana Iyer': null, 'Tim Clark': null, 'Tamira Paszek': null, 'Basshunter': null, 'Sasha Obama': null, 'Stuart': null, 'Malia Obama': null, 'Michelle Obama': null, 'Blowout': null, 'epaulette mate': null, 'smothered mate': null, 'Prinsjesdag': null, 'Election Day': null, 'William Allan Neilson': null, 'Paul Nolte': null, 'Devah Pager': null, 'Anne Case': null, 'Stella Ghervas': null, 'Roger Hilsman': null, 'Syksey': null, 'William Riley': null, 'Tommy Manville': null, 'Jessica Lappin': null, 'Michael Marshall': null, 'Orfeh': null, 'Roy Niederhoffer': null, 'Lionel': null, 'Tamsen Fadal': null, 'Robert Jackson': null, 'Nikita Singh': null, 'Kate Stoltzfus': null, 'Neiman Gracie': null, 'Marshall Sehorn': null, 'John Gomes': null, 'Julie Roginsky': null, 'Sean Robinson': null, 'Twitter bot': null, 'Jim Hensley': null, 'Ben Domenech': null, 'Tom Welling': null, 'Mark Spitznagel': null, 'John Paul Wild': null, 'Andrew Blackbird': null, 'Audrey Niffenegger': null, 'Jan BenDor': null, 'Beverly Buchanan': null, 'Theodore Roethke': null, 'Edward Groesbeck Voss': null}
+,
+                limit: 5,
+					onAutocomplete: search,
+
+				};
+
+            $(document).ready(function(){
+				$('input.autocomplete').autocomplete(autoCompleteOptions);
+		  	});
+
+
+
+
+            cy.nodes(function(element){
+                if( element.isNode() && element.degree()<1){
+                    cy.remove(element)
+                }
+
+
+				// zoom-in to searched value
+                $("#searchButton").click(function () {
+                    let searchValue = $('#autocomplete-input').val();
+                    if(searchValue !== ""){
+                        cy.nodes('[^stam]').unselect();
+                        cy.nodes('[name = "' + searchValue.toString() + '"]').select();
+                        api.disableMarqueeZoom();
+                        var selectedEles = cy.$(":selected");
+                        api.zoomToSelected(selectedEles);
+                        $('#autocomplete-input').val("");
+                    }
+                });
+
+                $('#autocomplete-input').keypress(function (e) {
+					 var key = e.which;
+					 if(key === 13)  // the enter key code
+					  {
+						search();
+						return false;
+					  }
+					});
+
+            });
+        });
+	</script>
+</head>
+
+<body>
+
+<div id="headPage" class="row card-panel teal lighten-5">
+	    <div class="col S3">
+      <div class="row">
+        <div class="input-field col s10">
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">SEARCH</label>
+        </div>
+		  <!--<a id="searchButton" class="waves-effect waves-light btn col S1">GO</a>-->
+	  </div>
+		</div>
+	<a id="zoomToSelected" class="waves-effect waves-light btn tooltipped" data-tooltip="Zoom to selected nodes">ZOOM-TO SELECTED</a>
+	<a id="highlightNeighbors" class="waves-effect waves-light btn">HIGHLIGHT NEIGHBORS</a>
+	<a id="selectNeighbors" class="waves-effect waves-light btn">SELECT NEIGHBORS</a>
+	<a id="shortestPath" class="waves-effect waves-light btn">SHORTEST PATH</a>
+	<a id="anomaly" class="waves-effect waves-light btn">ANOMALY DETECTION</a>
+
+
+
+
+</div>
+
+
+
+
+<div id="cy"></div>
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+</html>
