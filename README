@@ -1,0 +1,75 @@
+####################################################################################################
+Archive:
+####################################################################################################
+Past classes, history.
+
+
+####################################################################################################
+Data:
+####################################################################################################
+articles - A package containing the articles
+All relations and Entities - the relations and entities extract from the NERModel.py, in order for the
+                             reviewer to see the relations we extracted.
+commonwords.csv - 5000 most common words, used in the WordFilter.py
+entities_.txt - the relations, for parsing the entities for the GraphLoader.py, for internal purposes
+
+
+####################################################################################################
+WebGraph:
+####################################################################################################
+thde javaScripts file for the representation.
+baseGraph.html - the skeleton for the newsGraph.html.
+newsGraph.html - the skeleton with the information we injected on the graph, includes the nodes and
+                 the edges
+all the other files are the features we added to the graph (the bottoms on top)
+
+
+####################################################################################################
+GraphLoader:
+####################################################################################################
+Gets the edges from the NERModel, and creates a graph based on it  using the library networkX
+
+
+####################################################################################################
+LoadReadyGraph:
+####################################################################################################
+parser for the graph, parse the newsGraph.html, in order to build the graph faster,
+for INTERNAL PURPOSES ONLY
+
+
+####################################################################################################
+NERModel:
+####################################################################################################
+using the library spacy, loads model for dependency parsing, and creates edges based on the given
+articles
+
+
+####################################################################################################
+WebGraphBuilder:
+####################################################################################################
+The main class, runs the entire projects: based on list of articles, creates the knowledge graph.
+
+
+####################################################################################################
+WikidataSearcher:
+####################################################################################################
+The model that query Wikidata for a keyword (based on the entities we found in the NERModel)
+
+
+####################################################################################################
+WordFiter:
+####################################################################################################
+Filters words from the entities and unwanted chars (not part of ascii)
+
+
+####################################################################################################
+WordVector:
+####################################################################################################
+Model that uses gensim library, for represent each entity as a vector. Used in order to find similarity
+between two given words
+
+
+####################################################################################################
+AnomalyDetection:
+####################################################################################################
+The model contains two methods to find anomalies: by LOop algorithm or by center of mass.  
